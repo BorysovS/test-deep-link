@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 6</title>
-    <link rel="stylesheet" href="css/common.css" />
-</head>
-
-<body>
-    <button type="button" href="com.nauticai://">Button
-    </button>
-    <a href="com.nauticai://">
-        Link
-    </a>
-    <a href="exp+nauticai-mobile://expo-development-client/?url=http%3A%2F%2F192.168.0.211%3A8081">
-        Link
-    </a>
-</body>
-
-</html>
+<html><head></head><body>
+<p>Please wait while we redirect you to Your APP NAME...</p>
+<p><a href="javascript:redirectToApp()">Open appname</a></p>
+<script>
+var redirectToApp = function() {
+var scheme = "com.nauticai";
+var openURL = "com.nauticai" + window.location.pathname + 
+window.location.search + window.location.hash;
+var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+var Android = /Android/.test(navigator.userAgent);
+var newLocation;
+if (iOS) {
+  newLocation = scheme + ":" + openURL;
+} else if (Android) {
+  newLocation = "intent://" + openURL + "#Intent;scheme=" + scheme + 
+";package=com.nauticai;end";
+} else {
+  newLocation = scheme + "://" + openURL;
+}
+console.log(newLocation)
+window.location.replace(newLocation);
+} window.onload = redirectToApp;
+</script>
+</body></html>
